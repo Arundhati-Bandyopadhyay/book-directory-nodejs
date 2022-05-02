@@ -1,5 +1,4 @@
 const mongoose=require("mongoose")
-
 const bookSchema = new mongoose.Schema({
     title:{
         type:String,
@@ -18,7 +17,5 @@ const bookSchema = new mongoose.Schema({
        // default:"----"
     }
 });
-
 const bookmodel = mongoose.model('books',bookSchema);
-
 module.exports = bookmodel;

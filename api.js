@@ -13,9 +13,9 @@ exports.bookRegister = async (req, res) => {
     if (bookexist) return res.send("the book already exist");
     let filename;
     if (req.files) {
+      
       const ext = req.files.filesdoc.name.split(".");
       console.log(ext);
-
       console.log(ext[1]);
 
       if (ext[1] !== "pdf") {
@@ -61,3 +61,34 @@ exports.findbook = async (req, res) => {
     console.log(e);
   }
 };
+
+//updatebooks
+exports.updatebook = async(req, res) => {
+  const { id } = req.params;
+
+  const bookexist=await bookmodel.findOne({ id })
+
+  if(!bookexist){
+
+  }
+  updatedbook=await bookmodel.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+  res.status(200).json({
+    message:"updated",
+    updatedbook
+  })
+ };
+
+ //deletedbook
+ exports.deletebook=async (req, res)=> {
+  const { id } = req.params;
+  const bookExist = await bookmodel.findOne({isbn : id});
+  if (!bookExist) return res.send('Book Do Not exist');
+ await bookmodel.deleteOne({ isbn: id })
+ res.status(200).json({
+   message:"deleted"
+ })
+ }

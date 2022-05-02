@@ -1,6 +1,9 @@
 const app =require( "./app");
 const mongoose=require("mongoose")
+const dotenv=require("dotenv")
 
+
+dotenv.config({path:"./config/.env"})
 
 //config
 const port = process.env.port || 3000;
