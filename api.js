@@ -43,7 +43,7 @@ exports.bookRegister = async (req, res) => {
 //get all books
 exports.getAllBooks = async (req, res) => {
   const bookList = await bookmodel.find();
-  console.log(bookList);
+  //console.log(bookList);
   res.status(200).json({
     bookList,
   });

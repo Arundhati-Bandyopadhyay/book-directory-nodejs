@@ -35,7 +35,7 @@ exports.login = async (req, res) => {
     const n_user = await User.findOne({ email });
     if (!n_user) {
       res.status(401).json({
-        message: "invalid login details",
+        message: "invalid login details(1)",
       });
     }
     const ispasswordmatch = await n_user.comparePassword(password);
@@ -48,7 +48,7 @@ exports.login = async (req, res) => {
 
     sendToken(n_user, 201, res);
   } catch (e) {
-    console.log(e);
+    console.log(e.stack);
   }
 };
 
